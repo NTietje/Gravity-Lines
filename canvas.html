@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Titel der HTML-Seite -->
+    <title>canvas lines</title>
+
+    <!-- Als HTML-Encoding UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Korrektes Skalieren der Seite auf einem mobilen Endgerät -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+    <!-- Zeichnen von "Hallo Welt!" auf der Bühne
+         (nachdem die Seite geladen wurde). -->
+    <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="js/lineapp.js"></script>
+    <link href="style/design.css" rel="stylesheet" type="text/css">
+</head>
+
+<body onload="lineapp.init()" style="margin:0">
+    <!-- margin entfernt den Rahmen -->
+    <div id="myCanvasContainer">
+        <!-- Canvas Element -->
+        <canvas id="myCanvas">
+            Ihr Browser unterstützt HTML5 leider nicht!
+        </canvas>
+        <div id="controlContainer">
+            <img src="glinesImage.png" class="logo" />
+            <div class="presetcontainer">
+            <h3>Voreinstellungen</h3>
+            <form oninput="strokeRadiusDisplay.value=strokeRadius.value;speedFaktorDisplay.value=speedFaktor.value;lineCountDisplay.value=lineCount.value;gravitationForceFaktorDisplay.value=gravitationForceFaktor.value">
+                <input class="inputfield" name="strokeRadius" min="1" max="250" value="15" step="1" type="range" /> Strichlänge: <output name="strokeRadiusDisplay">15</output>
+                <br>
+                <input class="inputfield" name="speedFaktor" min="0.001" max="0.15" value="0.02" step="0.001" type="range" /> Strichgewschwindigkeit: <output name="speedFaktorDisplay">0.02</output>
+                <br>
+                <input class="inputfield" name="lineCount" min="1" max="200" value="50" step="1" type="range" /> Anzahl Striche: <output name="lineCountDisplay">50</output>
+                <br>
+                <input class="inputfield" id="gravitationForceFaktor" name="gravitationForceFaktor" min="1" max="15" value="7" step="1" type="range" /> Anziehungskraft zum Punkt: <output name="gravitationForceFaktorDisplay">7</output>
+                <br>
+                <input class="btn" type="button" onclick="lineapp.presetsChange(lineCount.value, speedFaktor.value, strokeRadius.value, gravitationForceFaktor.value)"
+                value="Eintsellungen übernehmen" />
+            </form>
+            </div>
+
+            <h3>Live Einstellungen</h3>
+            <form oninput="strokeWidthDisplay.value=strokeWidth.value">
+                Strichdicke: <output name="strokeWidthDisplay">2</output> <br>
+                <input class="inputrange" oninput="lineapp.strokeWidthChange(this.value)" onchange="lineapp.strokeWidthChange(this.value)" type="range" name="strokeWidth"
+                min="0.01" max="10" value="2" step="0.01">
+            </form>
+
+            <form oninput="connectionWidthDisplay.value=connectionWidth.value">
+                Verbindungsdicke: <output name="connectionWidthDisplay">0.03</output> <br>
+                <input class="inputrange" oninput="lineapp.connectionWidthChange(this.value)" onchange="lineapp.connectionWidthChange(this.value)" type="range"
+                name="connectionWidth" min="0.01" max="10" value="0.03" step="0.01">
+            </form>
+
+            <form oninput="connectionRadiusDisplay.value=connectionRadius.value">
+                Verbindungsradius: <output name="connectionRadiusDisplay">50</output> <br>
+                <input class="inputrange" oninput="lineapp.connectionRadiusChange(this.value)" onchange="lineapp.connectionRadiusChange(this.value)" type="range"
+                name="connectionRadius" min="1" max="200" value="50" step="1"> 
+            </form>
+
+            <form>
+                Vektoren anzeigen: <output id="showPhysicsDisplay">False</output> <br>
+                <input type="checkbox" name="showPhysics" onchange="lineapp.showPhysicsChange(this)" value="true" id="showphysicscheck">
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
